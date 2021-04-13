@@ -130,6 +130,47 @@ public class GenerateWorkload {
                             prItTemp, shutdown);
                 }
             }
+            else if(mode==5)
+            {
+                cpe = 2;
+                mpe = 6;
+                deadline=300;
+
+                int applicationType=ran.nextInt(100);
+                String prItTemp=Integer.toString(1+ran.nextInt(10));
+                if(applicationType>=0&&applicationType<=45)
+                {
+                    exec=2;
+                    jsonObj = constructJobRequest(i+1, exec, cpe, mpe,
+                            inputPath+"WC",
+                            outputPath,
+                            jarPath,
+                            mainClassNameWC,
+                            "", shutdown);
+                }
+                else if(applicationType>=46&&applicationType<=90)
+                {
+                    exec=4;
+                    jsonObj = constructJobRequest(i+1, exec, cpe, mpe,
+                            inputPath+"Sort",
+                            outputPath,
+                            jarPath,
+                            mainClassNameSort,
+                            "", shutdown);
+                }
+                else
+                {
+                    exec=6;
+                    deadline=800;
+
+                    jsonObj = constructJobRequest(i+1, exec, cpe, mpe,
+                            inputPath+"PR",
+                            outputPath,
+                            jarPath,
+                            mainClassNamePR,
+                            prItTemp, shutdown);
+                }
+            }
             else {
                 //error ..unknown mode
             }
